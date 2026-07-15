@@ -6,7 +6,7 @@ import LogoandTitle from './components/LogoandTitle'
 export default function Home() {
   return (
     <ViewContainer>
-      <LogoandTitle title="Início" />
+      <LogoandTitle title="Ana Sayfa" />
       <ViewContent>
         <Thumbnail />
       </ViewContent>

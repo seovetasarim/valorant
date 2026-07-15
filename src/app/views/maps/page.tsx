@@ -5,14 +5,14 @@ import SwiperMaps from '@/app/components/SwiperMaps'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Valorant | Mapas',
-  description: 'Conheça todos os mapas do jogo Valorant.',
+  title: 'Valorant | Haritalar',
+  description: 'Valorant oyunundaki tüm haritaları incele.',
 }
 
 export default function Maps() {
   return (
     <ViewContainer>
-      <LogoandTitle title="Mapas" />
+      <LogoandTitle title="Haritalar" />
       <ViewContent>
         <SwiperMaps />
       </ViewContent>

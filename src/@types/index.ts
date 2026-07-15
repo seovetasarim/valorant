@@ -20,6 +20,7 @@ export type ViewContainerProps = {
 
 export type ViewContentProps = {
   children: ReactNode
+  className?: string
 }
 
 export type ReactQueryProviderProps = {

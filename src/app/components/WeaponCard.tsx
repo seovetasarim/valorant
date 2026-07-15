@@ -48,7 +48,7 @@ const WeaponsCard = ({
 
           <section className="flex flex-col items-start justify-center">
             <span className="flex items-center justify-center text-[6px] uppercase text-white md:text-[8px]">
-              <span className="pr-1 text-red-600">{'//'}</span>Custo
+              <span className="pr-1 text-red-600">{'//'}</span>Maliyet
             </span>
             <span className="flex items-center justify-center gap-2 text-base font-semibold text-white md:text-xl">
               <TfiTarget className="h-4 w-4 font-bold" />
@@ -92,8 +92,8 @@ const WeaponsCard = ({
         <section className="pointer-events-none relative flex h-full flex-col items-start justify-start gap-5">
           <aside className="flex flex-col items-start justify-center">
             <span className="flex items-center justify-center text-[6px] uppercase text-white md:text-[8px]">
-              <span className="pr-1 text-red-600">{'//'}</span>Estatísticas
-              Gerais
+              <span className="pr-1 text-red-600">{'//'}</span>Genel
+              İstatistikler
             </span>
             <section className="flex items-start justify-around gap-5">
               <article className="flex flex-col items-start justify-center">
@@ -103,7 +103,7 @@ const WeaponsCard = ({
                     : '0'}
                 </span>
                 <span className="text-[6px] font-semibold uppercase text-white">
-                  Taxa de Tiro
+                  Ateş Hızı
                 </span>
               </article>
 
@@ -114,7 +114,7 @@ const WeaponsCard = ({
                     : '0'}
                 </span>
                 <span className="text-[6px] font-semibold uppercase text-white">
-                  Rounds
+                  Şarjör
                 </span>
               </article>
 
@@ -132,7 +132,7 @@ const WeaponsCard = ({
                 </span>
 
                 <span className="text-[6px] font-semibold uppercase text-white">
-                  Metros
+                  Metre
                 </span>
               </article>
             </section>
@@ -140,7 +140,7 @@ const WeaponsCard = ({
 
           <aside className="flex flex-col items-start justify-center">
             <span className="flex items-center justify-center text-[8px] uppercase text-white">
-              <span className="pr-1 text-red-600">{'//'}</span>Saida de Dano
+              <span className="pr-1 text-red-600">{'//'}</span>Hasar Çıkışı
             </span>
             <section className="flex items-start justify-around gap-5">
               <article className="flex flex-col items-start justify-center">
@@ -154,7 +154,7 @@ const WeaponsCard = ({
                   </span>
                 )}
                 <span className="text-[6px] font-semibold uppercase text-white">
-                  Cabeça
+                  Kafa
                 </span>
               </article>
 
@@ -169,7 +169,7 @@ const WeaponsCard = ({
                   </span>
                 )}
                 <span className="text-[6px] font-semibold uppercase text-white">
-                  Corpo
+                  Gövde
                 </span>
               </article>
 
@@ -184,7 +184,7 @@ const WeaponsCard = ({
                   </span>
                 )}
                 <span className="text-[6px] font-semibold uppercase text-white">
-                  Pernas
+                  Bacaklar
                 </span>
               </article>
             </section>
@@ -192,7 +192,7 @@ const WeaponsCard = ({
 
           <section className="absolute bottom-0 right-0 flex flex-col items-start justify-center">
             <span className="flex items-center justify-center text-[6px] uppercase text-white md:text-[8px]">
-              <span className="pr-1 text-red-600">{'//'}</span>Skins
+              <span className="pr-1 text-red-600">{'//'}</span>Skinler
             </span>
             <span className="flex items-center justify-center gap-2 text-base font-semibold text-white md:text-xl">
               <SiRiotgames className="h-4 w-4 font-bold" />

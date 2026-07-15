@@ -5,15 +5,15 @@ import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Valorant | Armas',
+  title: 'Valorant | Silahlar',
   description:
-    'Descubra todas as armas no jogo Valorant e mergulhe no arsenal tático que o ajudará a alcançar a vitória. Nossa página de Armas apresenta informações detalhadas sobre cada arma, incluindo estatísticas.',
+    'Valorant silahlarını keşfet. Her silahın istatistikleri, hasarı ve skinleri hakkında detaylı bilgiler bul.',
 }
 
 export default function Weapons() {
   return (
     <ViewContainer>
-      <LogoandTitle title="Armas" />
+      <LogoandTitle title="Silahlar" />
       <ViewContent>
         <GridWeapons />
       </ViewContent>

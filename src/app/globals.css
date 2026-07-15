@@ -164,3 +164,96 @@ body {
 .swiper-pagination-bullet-active {
   background: var(--theme-color);
 }
+
+/* ValoCross logo mark + multi-color neon wordmark */
+.logo-mark {
+  filter: drop-shadow(0 0 8px rgba(255, 62, 72, 0.35));
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.logo-brand:hover .logo-mark {
+  filter: drop-shadow(0 0 14px rgba(223, 255, 0, 0.45));
+  transform: scale(1.05);
+}
+
+.logo-neon {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.logo-neon-letter {
+  display: inline-block;
+  animation: logoNeonRainbow 3.2s linear infinite;
+  will-change: color, text-shadow;
+}
+
+.logo-brand:hover .logo-neon-letter {
+  animation-duration: 1.8s;
+}
+
+@keyframes logoNeonRainbow {
+  0% {
+    color: #ff3e48;
+    text-shadow:
+      0 0 4px #ff3e48,
+      0 0 12px #ff3e48,
+      0 0 22px rgba(255, 62, 72, 0.7);
+  }
+  16% {
+    color: #ff9f1c;
+    text-shadow:
+      0 0 4px #ff9f1c,
+      0 0 12px #ff9f1c,
+      0 0 22px rgba(255, 159, 28, 0.7);
+  }
+  33% {
+    color: #dfff00;
+    text-shadow:
+      0 0 4px #dfff00,
+      0 0 12px #dfff00,
+      0 0 22px rgba(223, 255, 0, 0.65);
+  }
+  50% {
+    color: #00e5ff;
+    text-shadow:
+      0 0 4px #00e5ff,
+      0 0 12px #00e5ff,
+      0 0 22px rgba(0, 229, 255, 0.7);
+  }
+  66% {
+    color: #7b61ff;
+    text-shadow:
+      0 0 4px #7b61ff,
+      0 0 12px #7b61ff,
+      0 0 22px rgba(123, 97, 255, 0.7);
+  }
+  83% {
+    color: #ff4fd8;
+    text-shadow:
+      0 0 4px #ff4fd8,
+      0 0 12px #ff4fd8,
+      0 0 22px rgba(255, 79, 216, 0.7);
+  }
+  100% {
+    color: #ff3e48;
+    text-shadow:
+      0 0 4px #ff3e48,
+      0 0 12px #ff3e48,
+      0 0 22px rgba(255, 62, 72, 0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-neon-letter {
+    animation: none;
+    color: #dfff00;
+    text-shadow:
+      0 0 6px #dfff00,
+      0 0 14px rgba(223, 255, 0, 0.6);
+  }
+}

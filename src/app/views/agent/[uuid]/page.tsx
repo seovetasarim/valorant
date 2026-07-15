@@ -17,7 +17,7 @@ export async function generateMetadata({
 }) {
   const agent = await handleAgentsById(params.uuid)
 
-  const APP_NAME = `Agente | ${agent?.displayName}`
+  const APP_NAME = `Ajan | ${agent?.displayName}`
   const APP_DESCRIPTION = agent?.description
   const BANNER_IMAGE = agent?.displayIcon
 
@@ -28,26 +28,24 @@ export async function generateMetadata({
     generator: 'Next.js',
     manifest: '/manifest.json',
     keywords: [
-      'wildemberg',
       'Valorant',
-      'renovatt',
-      'Wildemberg Renovato',
-      'personagens do valorant',
-      'skins do valorant',
-      'mapas do valorant',
-      'agentes do valorant',
+      'dijitalwebsite',
+      'valorant ajanları',
+      'valorant skinleri',
+      'valorant haritaları',
+      'valorant silahları',
     ],
     themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#1f2333' }],
     authors: [
-      { name: 'renovatt' },
-      { name: 'renovatt', url: 'https://www.linkedin.com/in/renovatt/' },
+      { name: 'dijitalwebsite' },
+      { name: 'dijitalwebsite', url: 'https://www.dijitalwebsite.com' },
     ],
     viewport:
       'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
 
     openGraph: {
       type: 'website',
-      url: 'https://valorant-renovatt.vercel.app/',
+      url: 'https://www.dijitalwebsite.com',
       title: APP_NAME,
       description: APP_DESCRIPTION,
       siteName: APP_NAME,
@@ -58,10 +56,13 @@ export async function generateMetadata({
       ],
     },
 
-    icons: [
-      { rel: 'apple-touch-icon', url: '/icon-192x192.png' },
-      { rel: 'icon', url: '/favicon.ico' },
-    ],
+    icons: {
+      icon: [
+        { url: '/icon.svg', type: 'image/svg+xml' },
+        { url: '/favicon.ico' },
+      ],
+      apple: [{ url: '/apple-icon.svg', type: 'image/svg+xml' }],
+    },
   }
 }
 

@@ -58,7 +58,7 @@ const MobileModal = ({
       flex-col items-start justify-start"
           >
             <h3 className="flex items-center justify-center gap-2 uppercase text-white">
-              {'//'}Role
+              {'//'}Rol
               <BsPlayCircle
                 className="h-5 w-5 text-white opacity-60 transition-all ease-in-out hover:cursor-pointer hover:opacity-100
           "
@@ -101,9 +101,9 @@ const MobileModal = ({
         className="z-40 flex h-full w-full items-start justify-center gap-4 overflow-y-scroll rounded-b-lg bg-primary-650"
       >
         <article className="flex flex-col items-start justify-start rounded-b-lg p-2">
-          <h3 className="my-2 uppercase text-white">{'//'}Biografia</h3>
+          <h3 className="my-2 uppercase text-white">{'//'}Biyografi</h3>
           <p className="my-2 text-xs text-primary-450">{description}</p>
-          <h3 className="my-2 uppercase text-white">{'//'}Habilidades</h3>
+          <h3 className="my-2 uppercase text-white">{'//'}Yetenekler</h3>
 
           <section className="flex h-full w-full flex-col items-start justify-start gap-2">
             {abilities?.map(

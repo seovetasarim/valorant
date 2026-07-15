@@ -5,15 +5,15 @@ import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Valorant | Agentes',
+  title: 'Valorant | Ajanlar',
   description:
-    'Explore o rol de Agentes em Valorant, cada um com habilidades únicas e estilos de jogo distintos. Nossa página de Agentes fornece perfis completos de cada personagem, revelando suas habilidades, biografias e estratégias para maximizar seu potencial. Domine os Agentes que mais se adequam ao seu estilo de jogo e lidere sua equipe para a vitória.',
+    'Valorant ajanlarını keşfet. Her ajanın yetenekleri, biyografisi ve oyun stili hakkında detaylı bilgiler bul. Tarzına uygun ajanı seç ve takımını zafere taşı.',
 }
 
 export default function Agents() {
   return (
     <ViewContainer>
-      <LogoandTitle title="Agentes" />
+      <LogoandTitle title="Ajanlar" />
       <ViewContent>
         <GridAgents />
       </ViewContent>
