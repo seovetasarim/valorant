@@ -1,28 +1,42 @@
 import { NextResponse } from 'next/server'
-
-const BLOG_API = 'https://www.valocross.com/api/blog'
+import mysql from 'mysql2/promise'
+import { mysqlConfigFromEnv } from '@/lib/mysqlEnv'
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url)
-    const limit = searchParams.get('limit') || '50'
-    const featured = searchParams.get('featured')
-
-    const qs = new URLSearchParams({ limit })
-    if (featured) qs.set('featured', featured)
-
-    const res = await fetch(`${BLOG_API}?${qs.toString()}`, {
-      next: { revalidate: 300 },
-    })
-
-    if (!res.ok) {
+    const dbConfig = mysqlConfigFromEnv()
+    if (!dbConfig) {
+      console.error('Blog API: DB_* ortam değişkenleri eksik')
       return NextResponse.json([])
     }
 
-    const data = await res.json()
-    return NextResponse.json(data)
+    const { searchParams } = new URL(request.url)
+    const limit = parseInt(searchParams.get('limit') || '50', 10)
+    const featured = searchParams.get('featured') === 'true'
+    const safeLimit = Number.isFinite(limit)
+      ? Math.min(Math.max(limit, 1), 100)
+      : 50
+
+    const connection = await mysql.createConnection(dbConfig)
+
+    let query = `
+      SELECT id, title, slug, description, author, category, tags, views, createdAt
+      FROM blog
+      WHERE isPublished = 1
+    `
+
+    if (featured) {
+      query += ` AND isFeatured = 1`
+    }
+
+    query += ` ORDER BY createdAt DESC LIMIT ?`
+
+    const [rows] = await connection.execute(query, [safeLimit])
+    await connection.end()
+
+    return NextResponse.json(rows)
   } catch (error) {
-    console.error('Blog proxy error:', error)
+    console.error('Blog fetch error:', error)
     return NextResponse.json([])
   }
 }

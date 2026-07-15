@@ -1,24 +1,44 @@
 import { NextResponse } from 'next/server'
-
-const BLOG_API = 'https://www.valocross.com/api/blog'
+import mysql from 'mysql2/promise'
+import { mysqlConfigFromEnv } from '@/lib/mysqlEnv'
 
 export async function GET(
   _request: Request,
   { params }: { params: { slug: string } },
 ) {
   try {
-    const res = await fetch(`${BLOG_API}/${params.slug}`, {
-      next: { revalidate: 300 },
-    })
+    const dbConfig = mysqlConfigFromEnv()
+    if (!dbConfig) {
+      return NextResponse.json(
+        { error: 'Servis yapılandırılmadı' },
+        { status: 503 },
+      )
+    }
 
-    if (!res.ok) {
+    const connection = await mysql.createConnection(dbConfig)
+
+    const [rows] = await connection.execute(
+      `SELECT * FROM blog WHERE slug = ? AND isPublished = 1`,
+      [params.slug],
+    )
+
+    const posts = rows as Array<Record<string, unknown>>
+
+    if (posts.length === 0) {
+      await connection.end()
       return NextResponse.json({ error: 'Yazı bulunamadı' }, { status: 404 })
     }
 
-    const data = await res.json()
-    return NextResponse.json(data)
+    await connection.execute(
+      `UPDATE blog SET views = views + 1 WHERE slug = ?`,
+      [params.slug],
+    )
+
+    await connection.end()
+
+    return NextResponse.json(posts[0])
   } catch (error) {
-    console.error('Blog detail proxy error:', error)
+    console.error('Blog detail fetch error:', error)
     return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
   }
 }
