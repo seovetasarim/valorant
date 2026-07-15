@@ -30,8 +30,8 @@ const CrosshairCard = ({ preset }: CrosshairCardProps) => {
     preset.category === 'pro'
       ? 'Pro'
       : preset.category === 'community'
-        ? 'Topluluk'
-        : 'Klasik'
+      ? 'Topluluk'
+      : 'Klasik'
 
   const handleCopy = async (e?: React.MouseEvent) => {
     e?.preventDefault()
@@ -90,7 +90,7 @@ const CrosshairCard = ({ preset }: CrosshairCardProps) => {
             {preset.name}
           </h1>
           <p
-            className="w-full truncate text-center font-mono text-[7px] text-white/40"
+            className="font-mono w-full truncate text-center text-[7px] text-white/40"
             title={preset.code}
           >
             {preset.code}

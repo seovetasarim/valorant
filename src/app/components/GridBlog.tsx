@@ -79,7 +79,7 @@ export default function GridBlog() {
 
       {totalPages > 1 && (
         <nav
-          className="mt-4 mb-2 flex w-full items-center justify-center gap-2"
+          className="mb-2 mt-4 flex w-full items-center justify-center gap-2"
           aria-label="Sayfalar"
         >
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (

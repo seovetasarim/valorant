@@ -2,45 +2,45 @@
 
 export interface CrosshairSettings {
   // Primary Crosshair
-  primaryColor: string;
-  outlineEnabled: boolean;
-  outlineOpacity: number;
-  outlineThickness: number;
-  centerDotEnabled: boolean;
-  centerDotOpacity: number;
-  centerDotThickness: number;
-  
+  primaryColor: string
+  outlineEnabled: boolean
+  outlineOpacity: number
+  outlineThickness: number
+  centerDotEnabled: boolean
+  centerDotOpacity: number
+  centerDotThickness: number
+
   // Inner Lines
-  innerLinesEnabled: boolean;
-  innerLineOpacity: number;
-  innerLineLength: number;
-  innerLineThickness: number;
-  innerLineOffset: number;
-  innerLineMovementError: boolean;
-  innerLineFiringError: boolean;
-  
+  innerLinesEnabled: boolean
+  innerLineOpacity: number
+  innerLineLength: number
+  innerLineThickness: number
+  innerLineOffset: number
+  innerLineMovementError: boolean
+  innerLineFiringError: boolean
+
   // Outer Lines
-  outerLinesEnabled: boolean;
-  outerLineOpacity: number;
-  outerLineLength: number;
-  outerLineThickness: number;
-  outerLineOffset: number;
-  outerLineMovementError: boolean;
-  outerLineFiringError: boolean;
+  outerLinesEnabled: boolean
+  outerLineOpacity: number
+  outerLineLength: number
+  outerLineThickness: number
+  outerLineOffset: number
+  outerLineMovementError: boolean
+  outerLineFiringError: boolean
 }
 
 export interface CrosshairPreset {
-  id: string;
-  name: string;
-  description: string;
-  author: string;
-  category: 'pro' | 'community' | 'default';
-  likes: number;
-  code: string;
-  imageUrl?: string;
-  settings: CrosshairSettings;
-  createdAt: string;
-  tags?: string[];
+  id: string
+  name: string
+  description: string
+  author: string
+  category: 'pro' | 'community' | 'default'
+  likes: number
+  code: string
+  imageUrl?: string
+  settings: CrosshairSettings
+  createdAt: string
+  tags?: string[]
 }
 
 export const defaultCrosshairSettings: CrosshairSettings = {
@@ -65,5 +65,4 @@ export const defaultCrosshairSettings: CrosshairSettings = {
   outerLineOffset: 10,
   outerLineMovementError: false,
   outerLineFiringError: false,
-};
-
+}

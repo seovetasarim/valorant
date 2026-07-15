@@ -19,11 +19,7 @@ function Navbar() {
           icon={GiCrosshair}
           text="Nişangah"
         />
-        <RouteLinks
-          href="/views/blog"
-          icon={HiOutlineNewspaper}
-          text="Blog"
-        />
+        <RouteLinks href="/views/blog" icon={HiOutlineNewspaper} text="Blog" />
         <RouteLinks
           href="/views/dijital-crosshair-indir"
           icon={HiOutlineDownload}

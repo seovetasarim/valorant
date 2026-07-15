@@ -39,7 +39,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
 
           <article className="flex w-full flex-col items-center gap-1 px-1.5 pb-1.5">
             {tags.length > 0 && (
-              <p className="w-full truncate text-center text-[8px] text-white/35">
+              <p className="text-white/35 w-full truncate text-center text-[8px]">
                 {tags.slice(0, 2).join(' · ')}
               </p>
             )}

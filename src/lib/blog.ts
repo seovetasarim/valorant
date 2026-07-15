@@ -27,6 +27,9 @@ export function parseBlogTags(tags?: string): string[] {
     const parsed = JSON.parse(tags)
     return Array.isArray(parsed) ? parsed : []
   } catch {
-    return tags.split(',').map((t) => t.trim()).filter(Boolean)
+    return tags
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean)
   }
 }

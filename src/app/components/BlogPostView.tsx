@@ -5,11 +5,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import BlogCard from '@/app/components/BlogCard'
 import Loader from '@/app/components/Helpers/Loader'
-import {
-  BlogPost,
-  formatBlogDate,
-  parseBlogTags,
-} from '@/lib/blog'
+import { BlogPost, formatBlogDate, parseBlogTags } from '@/lib/blog'
 
 export default function BlogPostView() {
   const params = useParams()

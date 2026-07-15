@@ -1,4 +1,4 @@
-import { CrosshairPreset } from '@/types/crosshair';
+import { CrosshairPreset } from '@/types/crosshair'
 
 export const popularCrosshairs: CrosshairPreset[] = [
   {
@@ -34,7 +34,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 2,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '2',
@@ -69,7 +69,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '3',
@@ -104,7 +104,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '4',
@@ -139,7 +139,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '5',
@@ -174,7 +174,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '6',
@@ -209,7 +209,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '7',
@@ -244,7 +244,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '8',
@@ -279,7 +279,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 2,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '9',
@@ -314,7 +314,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '10',
@@ -349,7 +349,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '11',
@@ -384,7 +384,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '12',
@@ -419,7 +419,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 3,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '13',
@@ -454,7 +454,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '14',
@@ -489,7 +489,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '15',
@@ -524,7 +524,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '16',
@@ -559,7 +559,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '17',
@@ -594,7 +594,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '18',
@@ -629,7 +629,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 40,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '19',
@@ -664,7 +664,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '20',
@@ -699,7 +699,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '21',
@@ -734,7 +734,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '22',
@@ -769,7 +769,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 19,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '23',
@@ -804,7 +804,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '24',
@@ -839,7 +839,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '25',
@@ -874,7 +874,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 1,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '26',
@@ -909,7 +909,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '27',
@@ -944,7 +944,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 5,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '28',
@@ -979,7 +979,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '29',
@@ -1014,7 +1014,7 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 1,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
   {
     id: '30',
@@ -1049,6 +1049,6 @@ export const popularCrosshairs: CrosshairPreset[] = [
       outerLineOffset: 0,
       outerLineMovementError: false,
       outerLineFiringError: false,
-    }
+    },
   },
-];
+]

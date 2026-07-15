@@ -15,7 +15,14 @@ function LogoMark() {
       fill="none"
     >
       <defs>
-        <linearGradient id="vcGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="vcGrad"
+          x1="4"
+          y1="4"
+          x2="44"
+          y2="44"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop stopColor="#ff3e48" />
           <stop offset="0.5" stopColor="#ff8a40" />
           <stop offset="1" stopColor="#dfff00" />
@@ -29,9 +36,20 @@ function LogoMark() {
         </filter>
       </defs>
 
-      <g stroke="url(#vcGrad)" filter="url(#vcSoft)" strokeLinecap="round" strokeLinejoin="round">
+      <g
+        stroke="url(#vcGrad)"
+        filter="url(#vcSoft)"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         {/* Outer tactical ring with scope gaps */}
-        <circle cx="24" cy="24" r="18" strokeWidth="1.8" strokeDasharray="10 5.5 10 5.5" />
+        <circle
+          cx="24"
+          cy="24"
+          r="18"
+          strokeWidth="1.8"
+          strokeDasharray="10 5.5 10 5.5"
+        />
 
         {/* Corner brackets — HUD feel */}
         <path d="M10 16 V11 H15" strokeWidth="2" />

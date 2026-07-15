@@ -121,8 +121,8 @@ export default function DownloadAppContent() {
           <p>
             Uygulama içinde yüzlerce hazır profil bulunur: rekabetçi Valorant
             stilleri, CS2 nişangahları ve eğlenceli sembol setleri. Renk,
-            kalınlık, kenarlık ve opaklığı anında değiştirebilir; sık kullandığın
-            ayarı tepsiye indirerek hızlıca geri açabilirsin.
+            kalınlık, kenarlık ve opaklığı anında değiştirebilir; sık
+            kullandığın ayarı tepsiye indirerek hızlıca geri açabilirsin.
           </p>
         </div>
       </section>
@@ -224,8 +224,8 @@ export default function DownloadAppContent() {
           Hemen dene
         </h2>
         <p className="mb-4 text-sm text-primary-800">
-          Dijital Crosshair’i resmi kaynaktan indir, kur ve nişangahını saniyeler
-          içinde kişiselleştir.
+          Dijital Crosshair’i resmi kaynaktan indir, kur ve nişangahını
+          saniyeler içinde kişiselleştir.
         </p>
         <a
           href={DOWNLOAD_URL}
