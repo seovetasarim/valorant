@@ -6,16 +6,13 @@ export async function GET(request: Request) {
   try {
     const dbConfig = mysqlConfigFromEnv()
     if (!dbConfig) {
-      console.error('Blog API: DB_* ortam değişkenleri eksik')
+      console.error('Blog API: DB_HOST/DB_USER/DB_PASSWORD/DB_NAME eksik')
       return NextResponse.json([])
     }
 
     const { searchParams } = new URL(request.url)
     const limit = parseInt(searchParams.get('limit') || '50', 10)
     const featured = searchParams.get('featured') === 'true'
-    const safeLimit = Number.isFinite(limit)
-      ? Math.min(Math.max(limit, 1), 100)
-      : 50
 
     const connection = await mysql.createConnection(dbConfig)
 
@@ -31,7 +28,7 @@ export async function GET(request: Request) {
 
     query += ` ORDER BY createdAt DESC LIMIT ?`
 
-    const [rows] = await connection.execute(query, [safeLimit])
+    const [rows] = await connection.execute(query, [limit])
     await connection.end()
 
     return NextResponse.json(rows)

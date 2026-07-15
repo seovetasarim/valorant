@@ -1,4 +1,4 @@
-/** MySQL — yalnızca ortam değişkenlerinden; sırları commit etme */
+/** MySQL bağlantısı yalnızca ortam değişkenlerinden — valorant-main ile aynı */
 export type MysqlConnEnv = {
   host: string
   user: string

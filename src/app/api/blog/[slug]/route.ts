@@ -39,6 +39,9 @@ export async function GET(
     return NextResponse.json(posts[0])
   } catch (error) {
     console.error('Blog detail fetch error:', error)
-    return NextResponse.json({ error: 'Sunucu hatası' }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    )
   }
 }
