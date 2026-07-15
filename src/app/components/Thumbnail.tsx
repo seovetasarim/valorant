@@ -3,6 +3,7 @@ import Image from 'next/image'
 import thumb from '../../../public/thumb.png'
 import logo from '../../../public/logo.svg'
 import Link from 'next/link'
+import { ROUTES } from '@/lib/routes'
 
 const Thumbnail = () => {
   const handleLoadingImage = (
@@ -29,7 +30,7 @@ const Thumbnail = () => {
       </figure>
 
       <Link
-        href={'/views/crosshairs'}
+        href={ROUTES.crosshairs}
         className="center-absolute z-30 w-[90%] max-w-xs border-2 border-primary-700 py-2 text-center text-2xl uppercase text-primary-700 transition-all
       ease-in-out hover:border-white hover:text-white"
       >

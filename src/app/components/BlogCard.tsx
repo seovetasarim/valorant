@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { BlogPost, formatBlogDate, parseBlogTags } from '@/lib/blog'
+import { ROUTES } from '@/lib/routes'
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   const tags = parseBlogTags(post.tags)
@@ -14,7 +15,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
   }
 
   return (
-    <Link href={`/views/blog/${post.slug}`} className="block">
+    <Link href={ROUTES.blogPost(post.slug)} className="block">
       <section className="bg-gradient-card animate__fadeIn animate__animated relative mx-2 my-4 flex h-52 w-36 cursor-pointer flex-col border-2 border-primary-700 bg-opacity-50 p-[2px] transition-all hover:border-white md:my-5 md:h-56 md:w-40">
         <div style={sectionStyle} className="absolute inset-0 opacity-20" />
 

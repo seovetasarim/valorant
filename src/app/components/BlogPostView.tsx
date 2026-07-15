@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation'
 import BlogCard from '@/app/components/BlogCard'
 import Loader from '@/app/components/Helpers/Loader'
 import { BlogPost, formatBlogDate, parseBlogTags } from '@/lib/blog'
+import { ROUTES } from '@/lib/routes'
 
 export default function BlogPostView() {
   const params = useParams()
@@ -61,7 +62,7 @@ export default function BlogPostView() {
           Aradığınız blog yazısı yok veya kaldırılmış.
         </p>
         <Link
-          href="/views/blog"
+          href={ROUTES.blog}
           className="border-2 border-primary-700 bg-primary-700 px-6 py-2 text-sm font-bold uppercase text-white hover:border-white"
         >
           Bloga dön
@@ -75,7 +76,7 @@ export default function BlogPostView() {
   return (
     <div className="mx-auto w-full max-w-3xl px-3 pb-10 pt-2 md:max-w-4xl md:px-4">
       <Link
-        href="/views/blog"
+        href={ROUTES.blog}
         className="mb-4 inline-block text-xs font-semibold uppercase text-primary-700 transition-colors hover:text-white"
       >
         ← Tüm yazılar

@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { AgentsCardProps } from '@/@types'
 import { useRouter } from 'next/navigation'
+import { ROUTES } from '@/lib/routes'
 
 const AgentsCard = ({
   displayName,
@@ -19,7 +20,7 @@ const AgentsCard = ({
 
   const router = useRouter()
   const handleAgentsById = (uuid: string) => {
-    router.push(`/views/agent/${uuid}`)
+    router.push(ROUTES.agent(uuid))
   }
 
   return (

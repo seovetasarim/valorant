@@ -6,6 +6,7 @@ import { BsPlayCircle } from 'react-icons/bs'
 import { TiArrowBackOutline } from 'react-icons/ti'
 import { useRouter } from 'next/navigation'
 import { useAbility } from '@/hooks/useAbility'
+import { ROUTES } from '@/lib/routes'
 
 const MobileModal = ({
   displayName,
@@ -20,7 +21,7 @@ const MobileModal = ({
 
   const router = useRouter()
   const backToAgents = () => {
-    router.push('/views/agents')
+    router.push(ROUTES.agents)
   }
 
   const backgroundImageUrl = `${fullPortrait}`

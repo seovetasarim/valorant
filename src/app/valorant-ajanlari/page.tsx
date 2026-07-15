@@ -1,22 +1,22 @@
 import ViewContainer from '@/app/components/Containers/ViewContainer'
 import ViewContent from '@/app/components/Containers/ViewContent'
-import GridWeapons from '@/app/components/GridWeapons'
+import GridAgents from '@/app/components/GridAgents'
 import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
 import { SEO, seoPage } from '@/lib/seo'
+import { ROUTES } from '@/lib/routes'
 
 export const metadata: Metadata = {
-  ...seoPage(SEO.weapons.title, SEO.weapons.description),
-  keywords: [...SEO.weapons.keywords],
-  alternates: { canonical: '/views/weapons' },
+  ...seoPage(SEO.agents.title, SEO.agents.description, ROUTES.agents),
+  keywords: [...SEO.agents.keywords],
 }
 
-export default function Weapons() {
+export default function AgentsPage() {
   return (
     <ViewContainer>
-      <LogoandTitle title="Silahlar" />
+      <LogoandTitle title="Ajanlar" />
       <ViewContent>
-        <GridWeapons />
+        <GridAgents />
       </ViewContent>
     </ViewContainer>
   )

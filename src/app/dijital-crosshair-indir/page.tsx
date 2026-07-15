@@ -4,16 +4,16 @@ import LogoandTitle from '@/app/components/LogoandTitle'
 import DownloadAppContent from '@/app/components/DownloadAppContent'
 import { Metadata } from 'next'
 import { SEO, SITE_NAME, SITE_URL, seoPage } from '@/lib/seo'
+import { ROUTES } from '@/lib/routes'
 
 export const metadata: Metadata = {
-  ...seoPage(SEO.download.title, SEO.download.description),
+  ...seoPage(SEO.download.title, SEO.download.description, ROUTES.download),
   keywords: [...SEO.download.keywords],
-  alternates: { canonical: '/views/dijital-crosshair-indir' },
   openGraph: {
     title: `${SEO.download.title} | ${SITE_NAME}`,
     description: SEO.download.description,
     type: 'website',
-    url: `${SITE_URL}/views/dijital-crosshair-indir`,
+    url: `${SITE_URL}${ROUTES.download}`,
     siteName: SITE_NAME,
     locale: 'tr_TR',
   },
@@ -32,7 +32,7 @@ export default function DownloadPage() {
       priceCurrency: 'TRY',
     },
     description: SEO.download.description,
-    url: `${SITE_URL}/views/dijital-crosshair-indir`,
+    url: `${SITE_URL}${ROUTES.download}`,
     author: {
       '@type': 'Organization',
       name: SITE_NAME,

@@ -40,18 +40,19 @@ export const SEO = {
     ],
   },
   crosshairs: {
-    title: 'Valorant Nişangah Kodları - Hazır Crosshair Listesi',
+    title: 'Valorant Nişangah Kodları - Hazır Profil Listesi',
     description:
-      'Valorant nişangah kodlarını incele, kopyala ve oyuna aktar. Onlarca hazır crosshair profili, görsel önizleme ve paylaşım kodu. ValoCross nişangah galerisi.',
+      'Valorant nişangah kodlarını incele, kopyala ve oyuna aktar. Onlarca hazır nişangah profili, görsel önizleme ve paylaşım kodu. ValoCross nişangah galerisi.',
     keywords: [
       'valorant nişangah kodları',
-      'crosshair kodu kopyala',
-      'hazır valorant crosshair',
+      'nişangah kodu kopyala',
+      'hazır valorant nişangah',
       'nişangah galerisi',
+      'valorant crosshair kodu',
     ],
   },
   blog: {
-    title: 'Valorant Crosshair Blog - Rehberler ve Nişangah İpuçları',
+    title: 'Valorant Nişangah Blogu - Rehberler ve İpuçları',
     description:
       'Valorant crosshair rehberleri, aim geliştirme yazıları, pro oyuncu nişangah ayarları ve nişangah kullanım kılavuzları. ValoCross blog.',
     keywords: [

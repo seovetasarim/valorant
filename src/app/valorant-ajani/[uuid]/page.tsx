@@ -2,6 +2,7 @@ import { Agent } from '@/@types'
 import AgentModal from '@/app/components/AgentModal'
 import { handleAgentsById, handleGetAgents } from '@/services'
 import { SITE_NAME, SITE_URL } from '@/lib/seo'
+import { ROUTES } from '@/lib/routes'
 
 export async function generateStaticParams() {
   const agents = await handleGetAgents()
@@ -22,7 +23,7 @@ export async function generateMetadata({
   const description =
     agent?.description ??
     `${name} ajanının Valorant yetenekleri, rolü ve oyun stili hakkında detaylı Türkçe rehber.`
-  const canonical = `/views/agent/${params.uuid}`
+  const canonical = ROUTES.agent(params.uuid)
 
   return {
     title,
@@ -44,17 +45,14 @@ export async function generateMetadata({
       siteName: SITE_NAME,
       images: agent?.displayIcon ? [{ url: agent.displayIcon }] : undefined,
     },
-    icons: {
-      icon: [
-        { url: '/icon.svg', type: 'image/svg+xml' },
-        { url: '/favicon.ico' },
-      ],
-      apple: [{ url: '/apple-icon.svg', type: 'image/svg+xml' }],
-    },
   }
 }
 
-export default async function Agent({ params }: { params: { uuid: string } }) {
+export default async function AgentPage({
+  params,
+}: {
+  params: { uuid: string }
+}) {
   const agent = await handleAgentsById(params.uuid)
   return <AgentModal {...agent} />
 }

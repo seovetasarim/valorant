@@ -6,6 +6,8 @@ import { HiOutlineDownload, HiOutlineNewspaper } from 'react-icons/hi'
 import { RxDashboard } from 'react-icons/rx'
 import { LiaIdCardAltSolid, LiaMapSolid } from 'react-icons/lia'
 
+import { ROUTES } from '@/lib/routes'
+
 function Navbar() {
   return (
     <nav className="flex h-full min-w-0 items-center overflow-hidden">
@@ -13,27 +15,26 @@ function Navbar() {
         <li className="hidden shrink-0 md:list-item">
           <Logo />
         </li>
-        <RouteLinks href="/" icon={RxDashboard} text="Ana Sayfa" />
+        <RouteLinks href={ROUTES.home} icon={RxDashboard} text="Ana Sayfa" />
         <RouteLinks
-          href="/views/crosshairs"
+          href={ROUTES.crosshairs}
           icon={GiCrosshair}
           text="Nişangah"
         />
-        <RouteLinks href="/views/blog" icon={HiOutlineNewspaper} text="Blog" />
-        {/* lg+ üst CTA varken tekrar etmesin */}
+        <RouteLinks href={ROUTES.blog} icon={HiOutlineNewspaper} text="Blog" />
         <RouteLinks
-          href="/views/dijital-crosshair-indir"
+          href={ROUTES.download}
           icon={HiOutlineDownload}
           text="İndir"
           className="lg:hidden"
         />
         <RouteLinks
-          href="/views/agents"
+          href={ROUTES.agents}
           icon={LiaIdCardAltSolid}
           text="Ajanlar"
         />
-        <RouteLinks href="/views/weapons" icon={GiCrocSword} text="Silahlar" />
-        <RouteLinks href="/views/maps" icon={LiaMapSolid} text="Haritalar" />
+        <RouteLinks href={ROUTES.weapons} icon={GiCrocSword} text="Silahlar" />
+        <RouteLinks href={ROUTES.maps} icon={LiaMapSolid} text="Haritalar" />
       </ul>
     </nav>
   )

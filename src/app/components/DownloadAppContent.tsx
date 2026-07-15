@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import DownloadCount from './DownloadCount'
+import { ROUTES } from '@/lib/routes'
 
 /** Sayaç + yönlendirme (indir.valocross.com/download.php) */
 const DOWNLOAD_URL = 'https://indir.valocross.com/download.php'
@@ -94,7 +95,7 @@ export default function DownloadAppContent() {
             Windows için indir (.exe)
           </a>
           <Link
-            href="/views/crosshairs"
+            href={ROUTES.crosshairs}
             className="inline-flex items-center justify-center border-2 border-primary-700 px-6 py-3 text-sm font-bold uppercase text-primary-700 transition-all hover:border-white hover:text-white"
           >
             Nişangah kodları

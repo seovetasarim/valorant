@@ -4,6 +4,7 @@ import BlogPostView from '@/app/components/BlogPostView'
 import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
 import { SITE_NAME, SITE_URL } from '@/lib/seo'
+import { ROUTES } from '@/lib/routes'
 
 type Props = { params: { slug: string } }
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = await res.json()
     const pageTitle = post.title as string
     const description = (post.description as string) || pageTitle
-    const canonical = `/views/blog/${params.slug}`
+    const canonical = ROUTES.blogPost(params.slug)
 
     return {
       title: pageTitle,

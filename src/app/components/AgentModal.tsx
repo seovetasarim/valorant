@@ -5,6 +5,7 @@ import { AgentModalProps } from '@/@types'
 import MobileModal from './MobileModal'
 import { TiArrowBackOutline } from 'react-icons/ti'
 import ModalContainer from './Containers/ModalContainer'
+import { ROUTES } from '@/lib/routes'
 
 const AgentModal = ({
   displayName,
@@ -17,7 +18,7 @@ const AgentModal = ({
 }: AgentModalProps) => {
   const router = useRouter()
   const backToAgents = () => {
-    router.push('/views/agents')
+    router.push(ROUTES.agents)
   }
 
   return (
