@@ -1,6 +1,13 @@
 import Link from 'next/link'
 import ViewContainer from './components/Containers/ViewContainer'
 import ViewContent from './components/Containers/ViewContent'
+import { Metadata } from 'next'
+import { SEO, seoPage } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  ...seoPage(SEO.notFound.title, SEO.notFound.description),
+  robots: { index: false, follow: true },
+}
 
 export default function NotFound() {
   return (
@@ -12,6 +19,9 @@ export default function NotFound() {
             <h2 className="text-2xl font-bold uppercase text-white md:text-3xl">
               Sayfa Bulunamadı
             </h2>
+            <p className="mt-3 max-w-xs text-center text-sm text-primary-800">
+              Aradığınız sayfa kaldırılmış veya adresi değişmiş olabilir.
+            </p>
             <Link
               href={'/'}
               className="mt-6 w-full border-2 border-secondary bg-primary-700 p-1 text-center font-bold uppercase text-white transition-all ease-in-out hover:border-white"

@@ -10,54 +10,40 @@ import { Inter } from 'next/font/google'
 import Container from './components/Containers/Container'
 import { AosProvider } from './components/Providers/AosProvider'
 import ReactQueryProvider from './components/Providers/ReactQueryProvider'
+import { SEO, SITE_NAME, SITE_URL } from '@/lib/seo'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const APP_NAME = 'ValoCross'
-const APP_DESCRIPTION =
-  "Valorant crosshair kodları ve nişangah ayarları. Pro oyuncuların crosshair'leri: TenZ, Shroud, ScreaM. Ücretsiz crosshair oluşturucu ile kendi nişangahını tasarla. 500+ hazır crosshair kodu."
-
 export const metadata: Metadata = {
-  metadataBase: new URL('https://valocross.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      'Valorant Crosshair Kodları - En İyi Nişangah Ayarları 2024 | ValoCross',
-    template: '%s | ValoCross - Valorant Crosshair',
+    default: `${SEO.home.title} | ${SITE_NAME}`,
+    template: `%s | ${SITE_NAME}`,
   },
-  applicationName: APP_NAME,
-  description: APP_DESCRIPTION,
+  applicationName: SITE_NAME,
+  description: SEO.home.description,
   generator: 'Next.js',
   manifest: '/manifest.json',
-  keywords: [
-    'valorant crosshair',
-    'valorant crosshair kodu',
-    'valorant nişangah',
-    'valorant nişangah ayarları',
-    'valorant crosshair kodları',
-    'tenz crosshair',
-    'shroud crosshair',
-    'scream crosshair',
-    'pro crosshair',
-    'crosshair oluşturucu',
-    'en iyi valorant crosshair',
-    'Dijital Crosshair',
-  ],
-  themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#DFFF00' }],
-  authors: [{ name: 'ValoCross' }],
-  creator: 'ValoCross',
-  publisher: 'ValoCross',
+  keywords: [...SEO.home.keywords],
+  themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#151929' }],
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   viewport:
     'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
 
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
-    url: 'https://valocross.com',
-    title: 'Valorant Crosshair Kodları - En İyi Nişangah Ayarları | ValoCross',
-    description:
-      "Valorant crosshair kodları ve pro oyuncu nişangah ayarları. TenZ, Shroud, ScreaM crosshair'leri. Ücretsiz crosshair oluşturucu.",
-    siteName: APP_NAME,
+    url: SITE_URL,
+    title: `${SEO.home.title} | ${SITE_NAME}`,
+    description: SEO.home.description,
+    siteName: SITE_NAME,
     images: [{ url: '/icon-192x192.png' }],
+  },
+
+  alternates: {
+    canonical: SITE_URL,
   },
 
   icons: {

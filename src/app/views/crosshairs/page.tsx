@@ -3,17 +3,18 @@ import ViewContent from '@/app/components/Containers/ViewContent'
 import GridCrosshairs from '@/app/components/GridCrosshairs'
 import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
+import { SEO, seoPage } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Valorant | Nişangah',
-  description:
-    'Valorant nişangah kodlarını keşfet. Beğendiğin crosshair kodunu kopyala ve oyuna aktar.',
+  ...seoPage(SEO.crosshairs.title, SEO.crosshairs.description),
+  keywords: [...SEO.crosshairs.keywords],
+  alternates: { canonical: '/views/crosshairs' },
 }
 
 export default function Crosshairs() {
   return (
     <ViewContainer>
-      <LogoandTitle title="Nişangah" />
+      <LogoandTitle title="Nişangah Kodları" />
       <ViewContent>
         <GridCrosshairs />
       </ViewContent>

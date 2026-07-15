@@ -3,26 +3,19 @@ import ViewContent from '@/app/components/Containers/ViewContent'
 import GridBlog from '@/app/components/GridBlog'
 import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
+import { SEO, SITE_NAME, SITE_URL, seoPage } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Blog | Valorant Crosshair Rehberleri — ValoCross',
-  description:
-    'Valorant crosshair rehberleri, pro oyuncu ayarları, aim geliştirme ipuçları ve nişangah kodu kullanım kılavuzları. ValoCross blog.',
-  keywords: [
-    'valorant blog',
-    'crosshair rehberi',
-    'aim geliştirme',
-    'pro oyuncu ayarları',
-    'valorant nişangah',
-    'valocross blog',
-  ],
+  ...seoPage(SEO.blog.title, SEO.blog.description),
+  keywords: [...SEO.blog.keywords],
+  alternates: { canonical: '/views/blog' },
   openGraph: {
-    title: 'Blog | Valorant Crosshair Rehberleri — ValoCross',
-    description:
-      'Valorant crosshair rehberleri, pro oyuncu ayarları ve aim ipuçları.',
+    title: `${SEO.blog.title} | ${SITE_NAME}`,
+    description: SEO.blog.description,
     type: 'website',
-    url: 'https://www.valocross.com',
-    siteName: 'ValoCross',
+    url: `${SITE_URL}/views/blog`,
+    siteName: SITE_NAME,
+    locale: 'tr_TR',
   },
 }
 

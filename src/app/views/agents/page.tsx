@@ -3,11 +3,12 @@ import ViewContent from '@/app/components/Containers/ViewContent'
 import GridAgents from '@/app/components/GridAgents'
 import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
+import { SEO, seoPage } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Valorant | Ajanlar',
-  description:
-    'Valorant ajanlarını keşfet. Her ajanın yetenekleri, biyografisi ve oyun stili hakkında detaylı bilgiler bul. Tarzına uygun ajanı seç ve takımını zafere taşı.',
+  ...seoPage(SEO.agents.title, SEO.agents.description),
+  keywords: [...SEO.agents.keywords],
+  alternates: { canonical: '/views/agents' },
 }
 
 export default function Agents() {

@@ -3,38 +3,45 @@ import ViewContent from '@/app/components/Containers/ViewContent'
 import BlogPostView from '@/app/components/BlogPostView'
 import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
+import { SITE_NAME, SITE_URL } from '@/lib/seo'
 
 type Props = { params: { slug: string } }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const res = await fetch(
-      `https://www.valocross.com/api/blog/${params.slug}`,
-      { next: { revalidate: 300 } },
-    )
+    const res = await fetch(`${SITE_URL}/api/blog/${params.slug}`, {
+      next: { revalidate: 300 },
+    })
     if (!res.ok) {
-      return { title: 'Yazı bulunamadı | Blog' }
+      return { title: 'Yazı Bulunamadı' }
     }
     const post = await res.json()
+    const pageTitle = post.title as string
+    const description = (post.description as string) || pageTitle
+    const canonical = `/views/blog/${params.slug}`
+
     return {
-      title: `${post.title} | ValoCross Blog`,
-      description: post.description,
+      title: pageTitle,
+      description,
+      alternates: { canonical },
       openGraph: {
-        title: post.title,
-        description: post.description,
+        title: `${pageTitle} | ${SITE_NAME}`,
+        description,
         type: 'article',
-        url: `https://www.valocross.com/blog/${post.slug}`,
+        locale: 'tr_TR',
+        url: `${SITE_URL}${canonical}`,
+        siteName: SITE_NAME,
       },
     }
   } catch {
-    return { title: 'Blog | ValoCross' }
+    return { title: 'Blog Yazısı' }
   }
 }
 
 export default function BlogSlugPage() {
   return (
     <ViewContainer>
-      <LogoandTitle title="Blog" />
+      <LogoandTitle title="Blog Yazısı" />
       <ViewContent>
         <BlogPostView />
       </ViewContent>

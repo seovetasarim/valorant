@@ -1,6 +1,7 @@
 import { Agent } from '@/@types'
 import AgentModal from '@/app/components/AgentModal'
 import { handleAgentsById, handleGetAgents } from '@/services'
+import { SITE_NAME, SITE_URL } from '@/lib/seo'
 
 export async function generateStaticParams() {
   const agents = await handleGetAgents()
@@ -16,46 +17,33 @@ export async function generateMetadata({
   params: { uuid: string }
 }) {
   const agent = await handleAgentsById(params.uuid)
-
-  const APP_NAME = `Ajan | ${agent?.displayName}`
-  const APP_DESCRIPTION = agent?.description
-  const BANNER_IMAGE = agent?.displayIcon
+  const name = agent?.displayName ?? 'Ajan'
+  const title = `${name} - Valorant Ajan Rehberi`
+  const description =
+    agent?.description ??
+    `${name} ajanının Valorant yetenekleri, rolü ve oyun stili hakkında detaylı Türkçe rehber.`
+  const canonical = `/views/agent/${params.uuid}`
 
   return {
-    title: APP_NAME,
-    applicationName: APP_NAME,
-    description: APP_DESCRIPTION,
-    generator: 'Next.js',
-    manifest: '/manifest.json',
+    title,
+    description,
     keywords: [
-      'Valorant',
-      'dijitalwebsite',
+      `${name} valorant`,
+      'valorant ajan rehberi',
+      'valorant yetenekleri',
       'valorant ajanları',
-      'valorant skinleri',
-      'valorant haritaları',
-      'valorant silahları',
+      'valocross',
     ],
-    themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#1f2333' }],
-    authors: [
-      { name: 'dijitalwebsite' },
-      { name: 'dijitalwebsite', url: 'https://www.dijitalwebsite.com' },
-    ],
-    viewport:
-      'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
-
+    alternates: { canonical },
     openGraph: {
       type: 'website',
-      url: 'https://www.dijitalwebsite.com',
-      title: APP_NAME,
-      description: APP_DESCRIPTION,
-      siteName: APP_NAME,
-      images: [
-        {
-          url: BANNER_IMAGE,
-        },
-      ],
+      locale: 'tr_TR',
+      url: `${SITE_URL}${canonical}`,
+      title: `${title} | ${SITE_NAME}`,
+      description,
+      siteName: SITE_NAME,
+      images: agent?.displayIcon ? [{ url: agent.displayIcon }] : undefined,
     },
-
     icons: {
       icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },

@@ -1,11 +1,11 @@
 {
-    "name": "ValoCross - Valorant Crosshair",
+    "name": "ValoCross - Valorant Nişangah Kodları",
     "short_name": "ValoCross",
-    "description": "Valorant için en iyi crosshair kodları ve nişangah ayarları",
+    "description": "Valorant nişangah kodları, crosshair ayarları ve hazır profiller",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#121212",
-    "theme_color": "#DFFF00",
+    "background_color": "#151929",
+    "theme_color": "#ff3e48",
     "orientation": "portrait-primary",
     "icons": [
         {

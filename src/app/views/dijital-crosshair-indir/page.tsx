@@ -3,33 +3,19 @@ import ViewContent from '@/app/components/Containers/ViewContent'
 import LogoandTitle from '@/app/components/LogoandTitle'
 import DownloadAppContent from '@/app/components/DownloadAppContent'
 import { Metadata } from 'next'
-
-const title = 'Dijital Crosshair İndir | Windows Nişangah Uygulaması'
-const description =
-  'Dijital Crosshair Windows uygulamasını indirin ve kurun. Valorant ve CS2 için özel nişangah overlay: hazır kodlar, özelleştirme, güvenli kurulum. Windows 10/11 destekli.'
+import { SEO, SITE_NAME, SITE_URL, seoPage } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title,
-  description,
-  keywords: [
-    'dijital crosshair indir',
-    'valorant nişangah uygulaması',
-    'valorant crosshair indir',
-    'cs2 crosshair overlay',
-    'windows nişangah programı',
-    'valocross crosshair',
-    'valorant crosshair kurulum',
-    'custom crosshair windows',
-  ],
+  ...seoPage(SEO.download.title, SEO.download.description),
+  keywords: [...SEO.download.keywords],
+  alternates: { canonical: '/views/dijital-crosshair-indir' },
   openGraph: {
-    title,
-    description,
+    title: `${SEO.download.title} | ${SITE_NAME}`,
+    description: SEO.download.description,
     type: 'website',
-    url: 'https://www.valocross.com',
-    siteName: 'ValoCross',
-  },
-  alternates: {
-    canonical: '/views/dijital-crosshair-indir',
+    url: `${SITE_URL}/views/dijital-crosshair-indir`,
+    siteName: SITE_NAME,
+    locale: 'tr_TR',
   },
 }
 
@@ -45,18 +31,18 @@ export default function DownloadPage() {
       price: '0',
       priceCurrency: 'TRY',
     },
-    description,
-    url: 'https://www.valocross.com',
+    description: SEO.download.description,
+    url: `${SITE_URL}/views/dijital-crosshair-indir`,
     author: {
       '@type': 'Organization',
-      name: 'ValoCross',
-      url: 'https://www.valocross.com',
+      name: SITE_NAME,
+      url: SITE_URL,
     },
   }
 
   return (
     <ViewContainer>
-      <LogoandTitle title="İndir" />
+      <LogoandTitle title="Uygulama İndir" />
       <ViewContent>
         <script
           type="application/ld+json"
