@@ -5,14 +5,14 @@ const AppDownloadButton = () => {
   return (
     <Link
       href="/views/dijital-crosshair-indir"
-      className="group flex shrink-0 items-center gap-2 border-2 border-primary-700 bg-primary-700 px-3 py-1.5 transition-all duration-200 hover:border-white hover:bg-transparent md:mr-3 md:px-4"
+      className="group flex h-10 shrink-0 items-center gap-1.5 self-center border-2 border-primary-700 bg-primary-700 px-2.5 transition-all duration-200 hover:border-white hover:bg-transparent md:h-11 md:gap-2 md:px-3 lg:px-4"
     >
       <HiOutlineDownload className="h-4 w-4 shrink-0 text-white transition-colors group-hover:text-primary-700 md:h-5 md:w-5" />
-      <span className="flex min-w-0 flex-col leading-tight">
-        <span className="hidden text-[9px] font-semibold uppercase tracking-[0.14em] text-white/75 group-hover:text-primary-700 sm:block">
+      <span className="flex min-w-0 flex-col justify-center leading-tight">
+        <span className="hidden whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.12em] text-white/75 group-hover:text-primary-700 md:block lg:text-[9px]">
           Uygulama indir
         </span>
-        <span className="truncate text-[11px] font-bold uppercase text-white group-hover:text-white md:text-xs">
+        <span className="whitespace-nowrap text-[10px] font-bold uppercase text-white group-hover:text-white md:text-[11px] lg:text-xs">
           Dijital Crosshair
         </span>
       </span>

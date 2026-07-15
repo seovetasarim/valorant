@@ -8,6 +8,7 @@ export type RouteLinksProps = {
   text: string
   href: string
   icon: ElementType
+  className?: string
 }
 
 export type TitleProps = {

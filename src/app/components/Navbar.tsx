@@ -8,11 +8,11 @@ import { LiaIdCardAltSolid, LiaMapSolid } from 'react-icons/lia'
 
 function Navbar() {
   return (
-    <nav className="flex w-full items-center justify-center md:w-auto">
-      <ul className="flex h-full w-full items-center justify-around px-2">
-        <div className="hidden md:flex">
+    <nav className="flex h-full min-w-0 items-center overflow-hidden">
+      <ul className="flex h-full min-w-0 flex-nowrap items-center gap-0.5 overflow-hidden px-1 md:gap-1 lg:gap-1.5 xl:gap-2">
+        <li className="hidden shrink-0 md:list-item">
           <Logo />
-        </div>
+        </li>
         <RouteLinks href="/" icon={RxDashboard} text="Ana Sayfa" />
         <RouteLinks
           href="/views/crosshairs"
@@ -20,10 +20,12 @@ function Navbar() {
           text="Nişangah"
         />
         <RouteLinks href="/views/blog" icon={HiOutlineNewspaper} text="Blog" />
+        {/* lg+ üst CTA varken tekrar etmesin */}
         <RouteLinks
           href="/views/dijital-crosshair-indir"
           icon={HiOutlineDownload}
           text="İndir"
+          className="lg:hidden"
         />
         <RouteLinks
           href="/views/agents"

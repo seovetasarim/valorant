@@ -82,7 +82,7 @@ const Logo = () => {
   return (
     <Link
       href={'/'}
-      className="logo-brand my-4 ml-2 mr-2 flex items-center gap-2.5 md:ml-4"
+      className="logo-brand ml-1 mr-1 flex shrink-0 items-center gap-2 py-0 md:ml-2"
       aria-label="ValoCross ana sayfa"
     >
       <LogoMark />
