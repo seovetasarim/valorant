@@ -6,6 +6,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import GoogleAnalytics from './components/GoogleAnalytics'
 import { Inter } from 'next/font/google'
 import Container from './components/Containers/Container'
 import { AosProvider } from './components/Providers/AosProvider'
@@ -65,7 +66,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr">
+      <head>
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body className={inter.className}>
+        <GoogleAnalytics />
         <ReactQueryProvider>
           <AosProvider>
             <Container>
