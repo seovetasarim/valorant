@@ -10,7 +10,7 @@ export default function SiteForSaleBanner() {
             Satılık
           </span>
           <span className="font-bold text-primary-700">valocross.com</span>
-          <span className="font-medium text-white/85">
+          <span className="text-white/85 font-medium">
             {' '}
             — Domain ve hazır Valorant nişangah sitesi satılıktır
           </span>
