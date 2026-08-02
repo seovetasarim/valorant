@@ -3,7 +3,7 @@ const SALE_PHONE_TEL = '+905321667697'
 
 export default function SiteForSaleBanner() {
   return (
-    <div className="absolute left-0 top-0 z-[60] flex h-9 w-full items-center border-b border-primary-700/40 bg-primary-900 text-white md:rounded-t-lg">
+    <div className="relative z-[70] flex h-9 w-full shrink-0 items-center border-b border-primary-700/40 bg-primary text-white">
       <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-0 px-3 text-center sm:justify-between sm:px-4 sm:text-left md:px-6">
         <p className="text-[11px] font-semibold leading-snug tracking-wide sm:text-[12px]">
           <span className="mr-1.5 inline-block rounded bg-primary-700 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white sm:text-[11px]">

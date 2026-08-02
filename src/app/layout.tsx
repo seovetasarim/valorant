@@ -70,12 +70,12 @@ export default function RootLayout({
       <head>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} flex min-h-screen flex-col`}>
         <GoogleAnalytics />
         <ReactQueryProvider>
           <AosProvider>
+            <SiteForSaleBanner />
             <Container>
-              <SiteForSaleBanner />
               <Header />
               {children}
               <Footer />
