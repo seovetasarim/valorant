@@ -5,6 +5,7 @@ import 'animate.css'
 import './globals.css'
 import type { Metadata } from 'next'
 import Header from './components/Header'
+import SiteForSaleBanner from './components/SiteForSaleBanner'
 import Footer from './components/Footer'
 import GoogleAnalytics from './components/GoogleAnalytics'
 import { Inter } from 'next/font/google'
@@ -74,6 +75,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <AosProvider>
             <Container>
+              <SiteForSaleBanner />
               <Header />
               {children}
               <Footer />
