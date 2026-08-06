@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
 import mysql from 'mysql2/promise'
 import { mysqlConfigFromEnv } from '@/lib/mysqlEnv'
+import { listLocalBlogSummaries } from '@/lib/blogSeed'
 
 const BLOG_PROXY = 'https://indir.valocross.com/blog-api.php'
-const BLOG_DETAIL_PROXY = 'https://indir.valocross.com/blog-detail.php'
 
 async function fetchFromProxy(limit: number, featured: boolean) {
   const url = new URL(BLOG_PROXY)
@@ -12,7 +12,9 @@ async function fetchFromProxy(limit: number, featured: boolean) {
   const res = await fetch(url.toString(), { next: { revalidate: 120 } })
   if (!res.ok) return null
   const data = await res.json()
-  return Array.isArray(data) ? data : null
+  if (Array.isArray(data)) return data
+  if (data && Array.isArray(data.posts)) return data.posts
+  return null
 }
 
 export async function GET(request: Request) {
@@ -36,23 +38,25 @@ export async function GET(request: Request) {
   // 2) Vercel → uzak MySQL (valorant-main gibi)
   try {
     const dbConfig = mysqlConfigFromEnv()
-    if (!dbConfig) {
-      return NextResponse.json([])
-    }
-
-    const connection = await mysql.createConnection(dbConfig)
-    let query = `
+    if (dbConfig) {
+      const connection = await mysql.createConnection(dbConfig)
+      let query = `
       SELECT id, title, slug, description, author, category, tags, views, createdAt
       FROM blog WHERE isPublished = 1
     `
-    if (featured) query += ` AND isFeatured = 1`
-    query += ` ORDER BY createdAt DESC LIMIT ?`
+      if (featured) query += ` AND isFeatured = 1`
+      query += ` ORDER BY createdAt DESC LIMIT ?`
 
-    const [rows] = await connection.execute(query, [safeLimit])
-    await connection.end()
-    return NextResponse.json(rows)
+      const [rows] = await connection.execute(query, [safeLimit])
+      await connection.end()
+      if (Array.isArray(rows) && rows.length > 0) {
+        return NextResponse.json(rows)
+      }
+    }
   } catch (error) {
     console.error('Blog MySQL error:', error)
-    return NextResponse.json([])
   }
+
+  // 3) Yerel SEO içerik (cocukmont üst segment yazıları)
+  return NextResponse.json(listLocalBlogSummaries(safeLimit, featured))
 }

@@ -74,7 +74,7 @@ export default function BlogPostView() {
   const tags = parseBlogTags(post.tags)
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-3 pb-10 pt-2 md:max-w-4xl md:px-4">
+    <div className="mx-auto w-full max-w-3xl px-3 pb-16 pt-2 md:max-w-4xl md:px-4 md:pb-20">
       <Link
         href={ROUTES.blog}
         className="mb-4 inline-block text-xs font-semibold uppercase text-primary-700 transition-colors hover:text-white"
