@@ -1,19 +1,28 @@
 import postsJson from '@/data/blog-posts.json'
 import type { BlogPost } from './blog'
 
-type StoredBlogPost = BlogPost & {
+type StoredBlogPost = {
+  id: string
+  title: string
+  slug: string
   description?: string | null
+  content?: string | null
   imageUrl?: string | null
-  isPublished?: number | boolean
-  isFeatured?: number | boolean
+  author: string
+  category: string
+  tags?: string | null
+  views: number
+  isPublished?: number | boolean | null
+  isFeatured?: number | boolean | null
+  createdAt: string
   updatedAt?: string | null
 }
 
-function isOn(value: number | boolean | undefined) {
+function isOn(value: number | boolean | null | undefined) {
   return value === 1 || value === true
 }
 
-const POSTS: StoredBlogPost[] = (postsJson as StoredBlogPost[])
+const POSTS: StoredBlogPost[] = (postsJson as unknown as StoredBlogPost[])
   .filter((post) => isOn(post.isPublished))
   .sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt))
 
@@ -23,10 +32,10 @@ function toBlogPost(post: StoredBlogPost, withContent: boolean): BlogPost {
     title: post.title,
     slug: post.slug,
     description: post.description ?? '',
-    ...(withContent ? { content: post.content } : {}),
+    ...(withContent ? { content: post.content || undefined } : {}),
     author: post.author,
     category: post.category,
-    tags: post.tags,
+    tags: post.tags || undefined,
     views: Number(post.views) || 0,
     createdAt:
       typeof post.createdAt === 'string'
