@@ -5,20 +5,18 @@ import LogoandTitle from '@/app/components/LogoandTitle'
 import { Metadata } from 'next'
 import { SITE_NAME, SITE_URL } from '@/lib/seo'
 import { ROUTES } from '@/lib/routes'
+import { getBlogPost } from '@/lib/blogPosts'
 
 type Props = { params: { slug: string } }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const res = await fetch(`${SITE_URL}/api/blog/${params.slug}`, {
-      next: { revalidate: 300 },
-    })
-    if (!res.ok) {
+    const post = getBlogPost(params.slug)
+    if (!post) {
       return { title: 'Yazı Bulunamadı' }
     }
-    const post = await res.json()
-    const pageTitle = post.title as string
-    const description = (post.description as string) || pageTitle
+    const pageTitle = post.title
+    const description = post.description || pageTitle
     const canonical = ROUTES.blogPost(params.slug)
 
     return {

@@ -1,55 +1,13 @@
 import { NextResponse } from 'next/server'
-import mysql from 'mysql2/promise'
-import { mysqlConfigFromEnv } from '@/lib/mysqlEnv'
-import { getLocalBlogPost } from '@/lib/blogSeed'
-
-const BLOG_DETAIL_PROXY = 'https://indir.valocross.com/blog-detail.php'
+import { getBlogPost } from '@/lib/blogPosts'
 
 export async function GET(
   _request: Request,
   { params }: { params: { slug: string } },
 ) {
-  try {
-    const url = new URL(BLOG_DETAIL_PROXY)
-    url.searchParams.set('slug', params.slug)
-    const res = await fetch(url.toString(), { next: { revalidate: 120 } })
-    if (res.ok) {
-      const data = await res.json()
-      if (data && !data.error && (data.slug || data.title)) {
-        return NextResponse.json(data)
-      }
-    }
-  } catch (error) {
-    console.error('Blog detail proxy error:', error)
+  const post = getBlogPost(params.slug)
+  if (!post) {
+    return NextResponse.json({ error: 'Yazı bulunamadı' }, { status: 404 })
   }
-
-  try {
-    const dbConfig = mysqlConfigFromEnv()
-    if (dbConfig) {
-      const connection = await mysql.createConnection(dbConfig)
-      const [rows] = await connection.execute(
-        `SELECT * FROM blog WHERE slug = ? AND isPublished = 1`,
-        [params.slug],
-      )
-      const posts = rows as Array<Record<string, unknown>>
-      if (posts.length > 0) {
-        await connection.execute(
-          `UPDATE blog SET views = views + 1 WHERE slug = ?`,
-          [params.slug],
-        )
-        await connection.end()
-        return NextResponse.json(posts[0])
-      }
-      await connection.end()
-    }
-  } catch (error) {
-    console.error('Blog detail MySQL error:', error)
-  }
-
-  const local = getLocalBlogPost(params.slug)
-  if (local) {
-    return NextResponse.json(local)
-  }
-
-  return NextResponse.json({ error: 'Yazı bulunamadı' }, { status: 404 })
+  return NextResponse.json(post)
 }

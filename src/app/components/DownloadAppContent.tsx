@@ -1,15 +1,13 @@
 import Link from 'next/link'
 import DownloadCount from './DownloadCount'
+import { DOWNLOAD_URL } from '@/lib/download'
 import { ROUTES } from '@/lib/routes'
-
-/** Sayaç + yönlendirme (indir.valocross.com/download.php) */
-const DOWNLOAD_URL = 'https://indir.valocross.com/download.php'
 
 const steps = [
   {
     n: '01',
     title: 'Uygulamayı indir',
-    text: 'Resmi indirme bağlantısından Dijital Crosshair kurulum dosyasını bilgisayarınıza kaydedin (~88 MB portable). Yalnızca resmi kaynaktan gelen dosyayı kullanın.',
+    text: 'GitHub’daki herkese açık sürümden Dijital Crosshair kurulum dosyasını bilgisayarınıza kaydedin (~88 MB). Yalnızca bu depodan gelen dosyayı kullanın.',
   },
   {
     n: '02',
@@ -50,7 +48,7 @@ const features = [
 const faqs = [
   {
     q: 'Dijital Crosshair ücretsiz mi?',
-    a: 'Evet. Uygulamayı valocross.com üzerinden ücretsiz indirebilir ve kurabilirsiniz.',
+    a: 'Evet. Uygulamayı herkese açık GitHub deposundan ücretsiz indirebilir ve kurabilirsiniz.',
   },
   {
     q: 'Valorant veya CS2 VAC / ban riski var mı?',
@@ -66,7 +64,7 @@ const faqs = [
   },
   {
     q: 'Kurulumda Windows engeli çıkarsa ne yapmalıyım?',
-    a: 'SmartScreen yeni yayınlanan uygulamalarda sık görülür. Daha fazla bilgi → Yine de çalıştır ile devam edebilirsiniz. Dosyayı yalnızca resmi valocross.com adresinden indirdiğinizden emin olun.',
+    a: 'SmartScreen yeni yayınlanan uygulamalarda sık görülür. Daha fazla bilgi → Yine de çalıştır ile devam edebilirsiniz. Dosyayı yalnızca seovetasarim/valorant GitHub deposundan indirdiğinizden emin olun.',
   },
 ]
 
@@ -83,8 +81,7 @@ export default function DownloadAppContent() {
         <p className="max-w-2xl text-sm leading-relaxed text-primary-800 md:text-base">
           Valorant ve CS2 için özel masaüstü nişangah uygulaması. Hazır
           profiller, canlı özelleştirme ve güvenli ekran overlay ile hedefini
-          netleştir. Resmi indirme:{' '}
-          <span className="text-white">valocross.com</span>.
+          netleştir. Kurulum dosyası herkese açık GitHub deposundan iner.
         </p>
 
         <div className="mt-5 flex flex-wrap items-center gap-3">
