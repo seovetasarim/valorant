@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dijital Crosshair</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: transparent !important;
+      user-select: none;
+      cursor: default;
+      font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+      color: #fff;
+    }
+
+    :root {
+      --red: #ff3d4f;
+      --red-2: #e3283b;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ---------- pencere çerçevesi ---------- */
+    .frame {
+      position: absolute;
+      inset: 14px;
+      overflow: hidden;
+      isolation: isolate;
+      background: #07080b;
+      clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 26px 100%, 0 calc(100% - 26px));
+      opacity: 0;
+      transform: scale(0.94);
+      animation: frame-in 0.45s var(--ease) forwards;
+      transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+    }
+    body.is-out .frame { opacity: 0; transform: scale(1.05); filter: blur(4px); }
+    @keyframes frame-in { to { opacity: 1; transform: scale(1); } }
+
+    .edge {
+      position: absolute;
+      inset: 14px;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      animation: fade 0.4s 0.1s forwards;
+      transition: opacity 0.3s;
+    }
+    body.is-out .edge { opacity: 0 !important; }
+    .edge svg { width: 100%; height: 100%; overflow: visible; }
+    .edge polygon {
+      fill: none;
+      stroke: url(#edge-g);
+      stroke-width: 1.5;
+      vector-effect: non-scaling-stroke;
+      filter: drop-shadow(0 0 6px rgba(255, 61, 79, 0.6));
+      stroke-dasharray: 3000;
+      stroke-dashoffset: 3000;
+      animation: draw 1.1s 0.05s var(--ease) forwards;
+    }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes fade { to { opacity: 1; } }
+
+    /* ---------- sahne ---------- */
+    .city {
+      position: absolute;
+      inset: -6%;
+      z-index: -4;
+      background: url("./assets/splash-city.webp") 66% 55% / cover no-repeat;
+      transform: scale(1.18);
+      filter: saturate(1.1) brightness(0.75);
+      animation: city-zoom 7s var(--ease) forwards;
+    }
+    @keyframes city-zoom { to { transform: scale(1.04); } }
+
+    .shade {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background:
+        linear-gradient(0deg, #07080b 0%, rgba(7, 8, 11, 0.92) 26%, rgba(7, 8, 11, 0) 58%),
+        radial-gradient(120% 70% at 50% 40%, transparent 40%, rgba(7, 8, 11, 0.8) 100%);
+    }
+
+    .slash {
+      position: absolute;
+      z-index: -2;
+      background: linear-gradient(140deg, #ff5463, #a90f1d 75%);
+      filter: drop-shadow(0 0 24px rgba(255, 40, 60, 0.55));
+      transform-origin: top left;
+      opacity: 0;
+    }
+    .slash--a {
+      left: -70px; top: -30px; width: 300px; height: 380px;
+      clip-path: polygon(0 0, 22% 0, 100% 100%, 78% 100%);
+      animation: slash-in 0.7s 0.12s var(--ease) forwards;
+    }
+    .slash--b {
+      right: -60px; top: 170px; width: 200px; height: 260px;
+      clip-path: polygon(0 0, 22% 0, 100% 100%, 78% 100%);
+      opacity: 0.6;
+      animation: slash-in 0.7s 0.22s var(--ease) forwards;
+    }
+    .slash--c {
+      left: 40px; right: 40px; top: 418px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      clip-path: none;
+      animation: line-in 0.7s 0.55s var(--ease) forwards;
+    }
+    @keyframes slash-in {
+      from { opacity: 0; transform: translateX(-40px) scaleY(0.4); }
+      to { opacity: 0.92; transform: none; }
+    }
+    @keyframes line-in {
+      from { opacity: 0; transform: scaleX(0); transform-origin: center; }
+      to { opacity: 1; transform: scaleX(1); transform-origin: center; }
+    }
+
+    .operator {
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      top: 34px;
+      height: 1020px;
+      transform: translate(-50%, 60px);
+      opacity: 0;
+      filter: drop-shadow(0 0 30px rgba(255, 40, 60, 0.45)) brightness(0.4);
+      -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 40%);
+      mask-image: linear-gradient(180deg, #000 30%, transparent 40%);
+      animation: operator-in 0.95s 0.15s var(--ease) forwards, breathe 5s 1.2s ease-in-out infinite;
+    }
+    @keyframes operator-in {
+      to { opacity: 1; transform: translate(-50%, 0); filter: drop-shadow(0 0 30px rgba(255, 40, 60, 0.45)) brightness(1); }
+    }
+    @keyframes breathe { 50% { transform: translate(-50%, -4px); } }
+
+    /* ---------- nişangah kilitlenme ---------- */
+    .reticle {
+      position: absolute;
+      left: 50%;
+      top: 132px;
+      width: 150px;
+      height: 150px;
+      margin-left: -75px;
+      opacity: 0;
+      animation: lock 0.8s 0.55s var(--ease) forwards;
+    }
+    .reticle svg { width: 100%; height: 100%; overflow: visible; }
+    .reticle .ring { transform-origin: 75px 75px; animation: spin 0.8s 0.55s var(--ease) forwards; }
+    @keyframes lock {
+      0% { opacity: 0; transform: scale(2.4); }
+      55% { opacity: 1; transform: scale(0.92); }
+      70% { transform: scale(1.04); }
+      100% { opacity: 0.85; transform: scale(1); }
+    }
+    @keyframes spin { from { transform: rotate(-120deg); } to { transform: rotate(45deg); } }
+
+    .flash {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 33%, rgba(255, 90, 105, 0.55), transparent 45%);
+      opacity: 0;
+      animation: flash 0.5s 1s ease-out forwards;
+    }
+    @keyframes flash { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0; } }
+
+    canvas#embers { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    .scan {
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 120px;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(255, 61, 79, 0.08) 80%, rgba(255, 61, 79, 0.25));
+      transform: translateY(-140px);
+      animation: scan 1.5s 0.2s ease-in-out forwards;
+    }
+    @keyframes scan { to { transform: translateY(640px); } }
+
+    /* ---------- marka + yükleme ---------- */
+    .bottom {
+      position: absolute;
+      left: 34px; right: 34px; bottom: 30px;
+      z-index: 3;
+      display: grid;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: up 0.6s 0.4s var(--ease) forwards;
+    }
+    .brand img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(255, 40, 60, 0.6));
+    }
+    .brand__name {
+      font: 800 34px/0.95 "Bahnschrift", "Segoe UI", sans-serif;
+      letter-spacing: 0.08em;
+      font-style: italic;
+    }
+    .brand__sub {
+      margin-top: 5px;
+      font: 600 11.5px/1 "Bahnschrift", "Segoe UI", sans-serif;
+      letter-spacing: 0.32em;
+      color: #c9cdd6;
+    }
+    @keyframes up { to { opacity: 1; transform: none; } }
+
+    .load {
+      display: grid;
+      gap: 10px;
+      opacity: 0;
+      animation: fade 0.4s 0.5s forwards;
+    }
+    .load__row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .status {
+      font-size: 12.5px;
+      color: #9aa0ad;
+      letter-spacing: 0.04em;
+      min-height: 16px;
+    }
+    .status b { color: #fff; font-weight: 600; }
+    .pct {
+      font: 800 30px/1 "Bahnschrift", "Segoe UI", sans-serif;
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      text-shadow: 0 0 18px rgba(255, 61, 79, 0.65);
+    }
+    .pct small { font-size: 0.5em; margin-left: 2px; color: var(--red); }
+
+    .bar {
+      position: relative;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+      overflow: hidden;
+    }
+    .bar__fill {
+      position: relative;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--red-2), var(--red) 70%, #ff8a95);
+      box-shadow: 0 0 14px rgba(255, 61, 79, 0.7);
+      transition: width 0.25s var(--ease);
+    }
+    .bar__fill::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; width: 60px;
+      right: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75));
+      animation: glint 1.2s linear infinite;
+    }
+    @keyframes glint { from { opacity: 0.3; } 50% { opacity: 1; } to { opacity: 0.3; } }
+
+    .ticks {
+      display: flex;
+      justify-content: space-between;
+      font: 600 10px/1 Consolas, monospace;
+      letter-spacing: 0.14em;
+      color: #5d6372;
+    }
+    .ticks span.is-done { color: var(--red); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="city"></div>
+    <div class="shade"></div>
+    <div class="slash slash--a"></div>
+    <div class="slash slash--b"></div>
+    <img class="operator" src="./assets/splash-operator.webp" alt="" draggable="false" />
+    <div class="slash slash--c"></div>
+
+    <div class="reticle" aria-hidden="true">
+      <svg viewBox="0 0 150 150">
+        <g class="ring" fill="none" stroke="#ff3d4f" stroke-width="2">
+          <path d="M75 8a67 67 0 0 1 67 67" />
+          <path d="M142 75a67 67 0 0 1-67 67" opacity="0.35" />
+          <path d="M75 142A67 67 0 0 1 8 75" />
+          <path d="M8 75A67 67 0 0 1 75 8" opacity="0.35" />
+        </g>
+        <g stroke="#ff3d4f" stroke-width="3" stroke-linecap="square">
+          <path d="M75 30v22M75 98v22M30 75h22M98 75h22" />
+        </g>
+        <circle cx="75" cy="75" r="3" fill="#fff" />
+      </svg>
+    </div>
+
+    <div class="scan"></div>
+    <canvas id="embers"></canvas>
+    <div class="flash"></div>
+
+    <div class="bottom">
+      <div class="brand">
+        <img src="./assets/logo.webp" alt="" draggable="false" />
+        <div>
+          <div class="brand__name">DİJİTAL</div>
+          <div class="brand__sub">CROSSHAIR COLLECTION</div>
+        </div>
+      </div>
+      <div class="load">
+        <div class="load__row">
+          <span class="status" id="status">Başlatılıyor…</span>
+          <span class="pct" id="pct">0<small>%</small></span>
+        </div>
+        <div class="bar"><div class="bar__fill" id="bar"></div></div>
+        <div class="ticks">
+          <span data-at="20">KÜTÜPHANE</span>
+          <span data-at="50">OVERLAY</span>
+          <span data-at="80">AYARLAR</span>
+          <span data-at="100">HAZIR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edge" aria-hidden="true">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="edge-g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff3d4f" />
+          <stop offset="0.5" stop-color="rgba(255,61,79,0.15)" />
+          <stop offset="1" stop-color="#ff3d4f" />
+        </linearGradient>
+      </defs>
+      <polygon points="0,0 95.1,0 100,4.2 100,100 4.9,100 0,95.8" />
+    </svg>
+  </div>
+
+  <script>
+    const bar = document.getElementById("bar");
+    const pct = document.getElementById("pct");
+    const statusEl = document.getElementById("status");
+    const ticks = [...document.querySelectorAll(".ticks span")];
+    const steps = [
+      [0, "Başlatılıyor…"],
+      [12, "Nişangah kütüphanesi <b>yükleniyor</b>…"],
+      [45, "Overlay katmanı <b>hazırlanıyor</b>…"],
+      [72, "Ayarların <b>okunuyor</b>…"],
+      [100, "<b>Hazır.</b> İyi oyunlar!"],
+    ];
+    let progress = 0;
+    let ready = false;
+    let raf = 0;
+
+    function setProgress(v) {
+      progress = Math.max(progress, Math.min(100, v));
+      bar.style.width = progress + "%";
+      pct.innerHTML = Math.round(progress) + "<small>%</small>";
+      let label = steps[0][1];
+      for (const [at, text] of steps) if (progress >= at) label = text;
+      if (statusEl.innerHTML !== label) statusEl.innerHTML = label;
+      ticks.forEach((t) => t.classList.toggle("is-done", progress >= Number(t.dataset.at)));
+    }
+
+    function tick(ts) {
+      if (ready) return;
+      if (!tick.t0) tick.t0 = ts;
+      const t = ts - tick.t0;
+      if (t < 500) setProgress(t / 12);
+      else if (t < 1000) setProgress(42 + (t - 500) / 14);
+      else if (t < 1400) setProgress(78 + (t - 1000) / 30);
+      else setProgress(Math.min(96, 91 + (t - 1400) / 150));
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+
+    /* kıvılcımlar */
+    const canvas = document.getElementById("embers");
+    const ctx = canvas.getContext("2d");
+    let W = 0, H = 0;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    function resize() {
+      W = canvas.clientWidth; H = canvas.clientHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener("resize", resize);
+    const embers = Array.from({ length: 46 }, () => spawn(true));
+    function spawn(initial) {
+      return {
+        x: Math.random() * W,
+        y: initial ? Math.random() * H : H + 10,
+        r: Math.random() * 1.6 + 0.4,
+        vy: Math.random() * 0.6 + 0.25,
+        vx: (Math.random() - 0.5) * 0.3,
+        a: Math.random() * 0.6 + 0.25,
+        w: Math.random() * Math.PI * 2,
+      };
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      for (let i = 0; i < embers.length; i++) {
+        const e = embers[i];
+        e.y -= e.vy; e.w += 0.03; e.x += e.vx + Math.sin(e.w) * 0.25;
+        if (e.y < -10) embers[i] = spawn(false);
+        const fade = Math.min(1, e.y / (H * 0.5));
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, ${70 + Math.round(e.r * 30)}, 80, ${e.a * fade})`;
+        ctx.shadowColor = "rgba(255, 50, 70, 0.9)";
+        ctx.shadowBlur = 8;
+        ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+
+    window.splashApi = {
+      setReady() {
+        ready = true;
+        cancelAnimationFrame(raf);
+        setProgress(100);
+      },
+      fadeOut() {
+        document.body.classList.add("is-out");
+      },
+    };
+  </script>
+</body>
+</html>

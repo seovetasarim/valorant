@@ -1,0 +1,67 @@
+{
+  "name": "dijital-crosshair",
+  "productName": "Dijital Crosshair",
+  "version": "2.0.1",
+  "description": "Dijital Crosshair — Valorant ve CS2 için nişangah overlay uygulaması.",
+  "main": "electron/main.cjs",
+  "author": "valocross.com",
+  "license": "ISC",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "npm run build && electron .",
+    "dist": "npm run build && electron-builder --win nsis --x64"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "@fontsource/rajdhani": "^5.2.5",
+    "@vitejs/plugin-react": "^5.0.0",
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "vite": "^7.0.0"
+  },
+  "build": {
+    "appId": "com.cihatcros.overlay",
+    "productName": "Dijital Crosshair",
+    "artifactName": "DijitalCrosshair-Setup.exe",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "electron/assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Dijital Crosshair",
+      "installerIcon": "electron/assets/icon.ico",
+      "uninstallerIcon": "electron/assets/icon.ico",
+      "installerHeaderIcon": "electron/assets/icon.ico",
+      "installerSidebar": "build/installerSidebar.bmp",
+      "uninstallerSidebar": "build/uninstallerSidebar.bmp",
+      "installerHeader": "build/installerHeader.bmp",
+      "include": "build/installer.nsh",
+      "installerLanguages": [
+        "tr_TR"
+      ],
+      "multiLanguageInstaller": true,
+      "runAfterFinish": true,
+      "createStartMenuShortcut": true,
+      "uninstallDisplayName": "Dijital Crosshair"
+    },
+    "publish": null
+  }
+}
