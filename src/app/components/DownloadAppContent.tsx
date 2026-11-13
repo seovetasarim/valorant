@@ -7,7 +7,7 @@ const steps = [
   {
     n: '01',
     title: 'Uygulamayı indir',
-    text: 'GitHub’daki herkese açık sürümden Dijital Crosshair kurulum dosyasını bilgisayarınıza kaydedin (~88 MB). Yalnızca bu depodan gelen dosyayı kullanın.',
+    text: 'GitHub’daki herkese açık sürümden Dijital Crosshair kurulum dosyasını bilgisayarınıza kaydedin (~100 MB). Yalnızca bu depodan gelen dosyayı kullanın.',
   },
   {
     n: '02',
@@ -28,6 +28,10 @@ const steps = [
 
 const features = [
   {
+    title: 'KING Serisi',
+    text: "Sadece Dijital Crosshair'de olan 200 özel nişangah: Valorant ve CS2 için 100'er adet, pro ölçülerinde artı, nokta ve dış çizgili stiller.",
+  },
+  {
     title: 'Hazır nişangah kütüphanesi',
     text: 'Yüzlerce Valorant ve CS2 profili, gerçek paylaşım kodları ve eğlenceli sembol stilleri tek galeride.',
   },
@@ -41,7 +45,7 @@ const features = [
   },
   {
     title: 'Hafif Windows uygulaması',
-    text: 'Electron tabanlı, hızlı açılış, sistem tepsisi desteği ve isteğe bağlı Windows ile birlikte başlatma.',
+    text: 'Yeni 2.0 arayüzü, saniyeler içinde açılış, sistem tepsisi desteği ve isteğe bağlı Windows ile birlikte başlatma.',
   },
 ]
 
@@ -187,7 +191,7 @@ export default function DownloadAppContent() {
         </h2>
         <ul className="list-inside list-disc space-y-1 text-sm text-primary-800">
           <li>Windows 10 veya Windows 11 (64-bit)</li>
-          <li>En az 100 MB boş disk alanı</li>
+          <li>En az 250 MB boş disk alanı</li>
           <li>İnternet bağlantısı (ilk indirme ve güncellemeler için)</li>
           <li>Valorant / CS2 veya herhangi bir tam ekran / pencere oyunu</li>
         </ul>
